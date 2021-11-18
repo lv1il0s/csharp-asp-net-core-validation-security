@@ -46,7 +46,8 @@ namespace ConferenceTracker.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrators")]
-        public IActionResult Create(Speaker speaker)
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([Bind("Id,FirstName,LastName,Description,EmailAddress,PhoneNumber")] Speaker speaker)
         {
             if (ModelState.IsValid)
             {
